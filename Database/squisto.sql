@@ -89,8 +89,6 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `email`, `is_active`, `password`) VALUES
-(1, 'phexcom', 'phexcom022@gmail.com', 1, '$2y$10$RgReeTpDYMkufwcNaId40ea.i0tOWBdCrJJ9.vvApekpeCsocGbxm');
 
 --
 -- Indexes for dumped tables
