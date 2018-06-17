@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+
+    name="Squisto"
+    targetNamespace="http://squisto.ralph/service"
+    xmlns:tns="http://squisto.ralph/soap/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <documentation>
+        Squisto documentation goes here --- !!!
+    </documentation>
+
+    <types>
+        <xsd:schema 
+
+            elementFormDefault="qualified"
+            targetNamespace="http://squisto.ralph/soap/">
+
+            <!-- simple type definitions -->
+            <xsd:simpleType name="moneyType">
+                <xsd:restriction base="xsd:decimal">
+                    <xsd:fractionDigits value="2"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+
+            <xsd:simpleType name="creditcardType">
+                <xsd:restriction base="xsd:positiveInteger">
+                    <xsd:pattern value="[0-9]{12,19}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+
+            <xsd:simpleType name="mealPeriod">
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="appetizer"/>
+                    <xsd:enumeration value="dessert"/>
+                    <xsd:enumeration value="breakfast"/>
+                    <xsd:enumeration value="lunch"/>
+                    <xsd:enumeration value="dinner"/>
+                    <xsd:enumeration value="snack"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+
+            <!-- simple elements declaration -->
+            <xsd:element name="id">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:positiveInteger"/>
+                </xsd:simpleType>
+            </xsd:element>
+
+            <xsd:element name="feedback">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:boolean"/>
+                </xsd:simpleType>
+            </xsd:element>
+
+            <!-- complex type declarations -->
+            <xsd:element name="restaurant">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:positiveInteger"/>
+                        <xsd:element name="name" type="xsd:string"/>
+                        <xsd:element name="wsdl_url" type="xsd:string"/>
+                        <xsd:element name="images_path" type="xsd:string"/>
+                        <xsd:element name="description" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="restaurants">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="restaurant" ref="tns:restaurant" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>          
+
+            <xsd:element name="restaurantType">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:positiveInteger"/>
+                        <xsd:element name="name" type="xsd:string"/>
+                        <xsd:element name="wsdl_url" type="xsd:string"/>
+                        <xsd:element name="images_path" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="meal">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:positiveInteger"/>
+                        <xsd:element name="name" type="xsd:string"/>
+                        <xsd:element name="cuisine" type="xsd:string"/>
+                        <xsd:element name="price" type="tns:moneyType"/>
+                        <xsd:element name="ingredient" type="xsd:string"/>
+                        <xsd:element name="period" type="tns:mealPeriod"/>
+                        <xsd:element name="description" type="xsd:string"/>
+                        <xsd:element name="restaurant" ref="tns:restaurantType"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="meals">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="meal" ref="tns:meal" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="query">
+                <xsd:complexType>
+                    <xsd:all>
+                        <xsd:element name="name" minOccurs="0" type="xsd:string"/>
+                        <xsd:element name="cuisine" minOccurs="0" type="xsd:string"/>
+                        <xsd:element name="ingredient" minOccurs="0" type="xsd:string"/>
+                        <xsd:element name="price" minOccurs="0" type="tns:moneyType"/>
+                    </xsd:all>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="order">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="mealId" type="xsd:positiveInteger"/>
+                        <xsd:element name="restaurantId" type="xsd:positiveInteger"/>
+                        <xsd:element name="creditcard" type="tns:creditcardType"/>
+                        <xsd:element name="quantity" minOccurs="0" type="xsd:positiveInteger"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+        </xsd:schema>
+    </types>
+
+    <message name="getMenuInput"/>
+    <message name="getMenuOutput">
+        <part name="menuList" element="tns:meals"/>
+    </message>
+
+    <message name="getMealInput">
+        <part name="mealId" element="tns:id"/>
+        <part name="restaurantId" element="tns:id"/>
+    </message>
+    <message name="getMealOutput">
+        <part name="mealDetails" element="tns:meal"/>
+    </message>
+
+    <message name="searchInput">
+        <part name="parameters" element="tns:query"/>
+    </message>
+    <message name="searchOutput">
+        <part name="result" element="tns:meals"/>
+    </message>     
+
+    <message name="orderInput">
+        <part name="orderDetails" element="tns:order"/>
+    </message>
+    <message name="orderOutput">
+        <part name="orderFeedback" element="tns:feedback"/>
+    </message>
+
+    <portType name="SquistoPortType">
+        <documentation>
+            PortType documentations goes here --- !!!
+        </documentation>
+        <operation name="getMenu">
+            <input message="tns:getMenuInput"/>
+            <output message="tns:getMenuOutput"/>
+        </operation>
+        <operation name="getMeal">
+            <input message="tns:getMealInput"/>
+            <output message="tns:getMealOutput"/>
+        </operation>
+        <operation name="searchMeal">
+            <input message="tns:searchInput"/>
+            <output message="tns:searchOutput"/>
+        </operation>
+        <operation name="orderMeal">
+            <input message="tns:orderInput"/>
+            <output message="tns:orderOutput"/>
+        </operation>
+    </portType>
+
+    <binding name="SquistoBinding" type="tns:SquistoPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getMenu">
+            <soap:operation soapAction="http://squisto.ralph/soap#getMenu"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getMeal">
+            <soap:operation soapAction="http://squisto.ralph/soap#getMeal"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="searchMeal">
+            <soap:operation soapAction="http://squisto.ralph/soap#searchMeal"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="orderMeal">
+            <soap:operation soapAction="http://squisto.ralph/soap#orderMeal"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="SquistoService">
+        <port name="SquistoPort" binding="tns:SquistoBinding">
+            <soap:address location="http://squisto.ralph/service"/>
+        </port>
+    </service>
+
+</definitions>

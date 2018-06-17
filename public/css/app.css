@@ -1,0 +1,339 @@
+/*
+    Initialize CSS
+    Implement Namespaces
+*/
+
+
+/* Home page */
+
+#container {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -4em;
+}
+
+.hero {
+    background: url("../images/hero.jpg") no-repeat center center;
+    background-size: cover;
+    height: 92vh;
+    
+}
+
+/* large nav bar */
+
+#logo {
+    margin-left: 3em;
+    font-size: 1.8em;
+    color: white;
+    font-style: italic;
+    font-weight: bolder;
+    font-family: 'Pacifico', cursive;
+}
+
+.fi-list {
+    color: white;
+}
+
+#nav {
+    background-color: #303F9F;
+    height: 8.4vh;
+    font-family: Verdana, sans-serif;
+    width: 100%;
+}
+
+#nav ul li {
+    border-bottom: 6px solid #303F9F;
+    padding: 1.4vh;
+    font-weight: bolder;
+}
+
+#nav ul li:hover {
+    border-bottom-color: #ecf0f1;
+}
+
+
+/* mobile Nav */
+.top-bar {
+    background-color: #303F9F;
+}
+
+.top-bar ul {
+    background-color: #303F9F;
+    width: 100%;
+    height: 100%;
+}
+
+.title-bar {
+    background-color: #303F9F;
+    height: 8vh;
+    padding-top: 1vh;
+    padding-left: 40vw;
+    font-family: 'Pacifico', cursive;
+    font-size: 1.7em;
+}
+
+.top-bar ul li {
+    margin: .7em 0;
+    font-weight: bolder;
+    border-bottom: 6px solid #303F9F;
+}
+
+.top-bar ul li:hover {
+    border-bottom: 6px solid #ecf0f1;
+}
+
+
+
+/* page content*/
+
+.advert {
+    padding: 10em 0;
+}
+
+.showcase {
+    margin: 0 15vw;
+}
+
+.showcase img {
+    height: 70vh;
+}
+
+footer {
+    padding: 1em 0;
+    background-color: #303F9F;
+    color: white;
+    height: 4em;
+}
+
+.small {
+    font-size: .8em;
+    font-weight: bold;
+}
+
+
+/* Forms */
+
+.form-box {
+    border: 1px solid #cacaca;
+    margin: 4em auto;
+    overflow: hidden;
+    padding: 3em auto;
+}
+
+.form-head {
+    background-color: #303F9F;
+}
+
+.form-content {
+    margin: 3em auto;
+}
+
+.form-head h2 {
+    font-family: Helvetica, Verdana, sans-serif;
+    color: #ecf0f1;
+    margin: 1.5em auto;
+}
+
+.fieldset {
+    padding: 4em 4em;
+}
+
+.fieldset legend {
+    font-weight: bolder;
+    font-size: 1.2em;
+    color: #303F9F;
+}
+
+.button[type=submit] {
+    background-color: #303F9F;
+}
+
+.dyn_wrapper input {
+    margin-left: 1em;
+}
+
+.dyn_wrapper button {
+    margin-left: .5em;
+    margin-right: 1em;
+}
+
+ul.val_errors {
+    margin-bottom: 2.5em;
+    padding: 1em;
+    padding-left: 3em;
+}
+
+/* Search Form */
+
+#search-container {
+    padding: 3em 1em;
+}
+
+#search-container h4 {
+    font-style: italic;
+    color: gray;
+}
+
+#search-form form > div.row {
+    margin: 2em 0;
+}
+
+#search-form input {
+    height: 4em;
+    margin-bottom: 0;
+}
+
+#search-form label > * {
+    fonr
+}
+
+#search-form ::-webkit-input-placeholder { font-style:italic; }
+#search-form ::-moz-placeholder { font-style:italic; } /* firefox 19+ */
+#search-form :-ms-input-placeholder { font-style:italic; } /* ie */
+#search-form input:-moz-placeholder { font-style:italic; }
+
+/* deatails view */
+
+.detail {
+    margin: 4em 0 8em 0;
+}
+
+.detail .box {
+    border: 1px solid rgba(204, 204, 204, 0.5);
+    padding: 0;
+    margin: 3em 0;
+    overflow: hidden;
+}
+
+.detail .box .content {
+    padding: 1em;
+}
+
+.detail .box hr {
+    margin: .7em auto
+}
+
+.detail .box .image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.detail .rest {
+    font-style: italic;
+}
+
+.detail .button {
+    margin-bottom: 0;
+    margin-left: 1em;
+}
+
+.button.primary {
+    background-color: #303F9F;
+}
+
+.button.primary:hover {
+    background-color: rgba(48, 63, 159, 0.5);
+}
+
+.fi-info, .fi-shopping-cart, .fi-arrows-out {
+    margin-right: .5em;
+    font-size: 12px;
+}
+
+.fi-arrows-out {
+    margin-right: 0;
+}
+
+.detail .h1 {
+    font-size: 2em;
+}
+
+#price-text {
+    font-size: 2em;
+    font-weight: bolder;
+}
+
+/* checkout view */
+
+.checkout {
+    padding: 4em 0;
+}
+
+/* admin */
+.admin ul li {
+    margin-bottom: 1em;
+}
+
+
+/* restaurant view */
+.image-head {
+    min-height: 30em;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.descr {
+    font-size: 1.1em;
+    margin: 1.5em auto;
+}
+
+/* Medium only styles */
+
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+    
+}
+
+/* Small only styles */
+
+@media screen and (max-width: 39.9375em) {
+
+    .title-bar {
+        padding-left: 35vw;
+        font-family: 'Pacifico', cursive;
+        font-size: 1.3em;
+    }
+}
+
+ul {
+    overflow: auto;
+}
+
+ul li {
+    list-style-type: none;
+    float: left;
+}
+
+ul li a i {
+    background: #205D7A;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    font-size: 25px;
+    text-align: center;
+    margin-right: 10px;
+    padding-top: 15%;
+}
+
+.fa-facebook {
+    background:#3b5998
+} 
+.fa-linkedin {
+    background:#007bb6
+}
+.fa-twitter {
+    background:#00aced
+}
+.google-plus {
+    background:#dd4b39
+}
+
+ul li a i {
+    transition: all 0.2s ease-in-out;
+}
+ul li a i:hover {
+    opacity: .7;
+}
